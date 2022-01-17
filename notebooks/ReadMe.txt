@@ -1,1 +1,1 @@
-Jupyter notebooks. Naming convention is a number (for ordering),the creator's initials, and a short `-` delimited description, e.g.`1.0-jqp-initial-data-exploration`.
+Notebooks that run in Google Colab, to load data from Google Drive in the format expected (see ReadMe file) which produce the analysis within the final report.
