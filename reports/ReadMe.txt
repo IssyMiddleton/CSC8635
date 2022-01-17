@@ -1,1 +1,1 @@
-This folder typically contains generated analysis as HTML, PDF, LaTeX, etc.
+This folder contains generated analysis in PDF format.
