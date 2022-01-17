@@ -1,1 +1,1 @@
-This folder contains generated graphics and figures to be used in reporting.
+This folder contains generated graphics and figures used within the reports.
