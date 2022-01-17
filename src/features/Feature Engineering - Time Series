@@ -1,0 +1,29 @@
+#This is the feature engineering used in the Time Series data analysis.
+
+#@title
+from scipy.stats import kurtosis, skew, iqr, median_absolute_deviation 
+def _FE(X):
+    X_mean = np.mean(X, axis=1)
+    X_std = np.std(X, axis=1)
+    X_var = np.var(X, axis=1)
+    X_energy = np.sqrt(np.mean(np.power(X, 2), axis=1))
+    X_mad= np.mean(np.abs(X - np.expand_dims(X_mean, axis=1)), axis=1)
+    X_mad1 = median_absolute_deviation(X, axis=1)
+    X_kurtosis = kurtosis(X, axis = 1)
+    X_skew = skew(X, axis = 1)
+    X_iqr = iqr(X, axis = 1)
+    X_max = np.amax(X, axis=1)
+    X_min = np.amin(X, axis=1)
+    
+    return np.concatenate((X_mean 
+                           ,X_std
+                           ,X_var
+                           ,X_energy
+                           ,X_mad
+                           ,X_mad1
+                           ,X_kurtosis
+                           ,X_skew
+                           ,X_iqr
+                           ,X_max
+                           ,X_min
+                          ), axis=1)
