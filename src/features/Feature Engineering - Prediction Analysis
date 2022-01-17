@@ -1,0 +1,26 @@
+#This the feature engineering used for the Data Subject and individual characteristic prediction analysis.
+
+#@title
+#Features based on code within: https://www.kaggle.com/teaprint/my-analysis-on-motion-sensor-data (also see references within final report)
+#  Calculate features
+df_sum = Df_all.groupby('Exp_num', axis=0).mean().reset_index()
+df_sum.columns = df_sum.columns.str.replace('.','_sum_')
+
+df_sum_SS = np.power(Df_all.astype(float),2).groupby('Exp_num', axis=0).median().reset_index() 
+df_sum_SS.columns = df_sum_SS.columns.str.replace('.','_sumSS_')
+
+df_max = Df_all.groupby('Exp_num', axis=0).max().reset_index()
+df_max.columns = df_max.columns.str.replace('.','_max_')
+
+df_min = Df_all.groupby('Exp_num', axis=0).min().reset_index()
+df_min.columns = df_min.columns.str.replace('.','_min_')
+
+df_skew = Df_all.groupby('Exp_num', axis=0).skew().reset_index()
+df_skew.columns = df_skew.columns.str.replace('.','_skew_')
+
+df_std = Df_all.groupby('Exp_num', axis=0).std().reset_index()
+df_std.columns = df_std.columns.str.replace('.','_std_')
+
+Df_Features = pd.concat([ df_max , df_sum[df_sum.columns[2:-2]], 
+                         df_min[df_min.columns[2:-2]], df_sum_SS[df_sum_SS.columns[2:-2]], 
+                         df_std[df_std.columns[2:-2]], df_skew[df_skew.columns[2:-2]]], axis=1)
